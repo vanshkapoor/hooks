@@ -1,15 +1,15 @@
 import React,{useState} from 'react';
+import styled from 'styled-components';
 import './App.css';
-
+import Button from './common/Button';
 
 function Todo({todo,index,completedTodo,removeTodo})
 {
   return <div className="todo" 
     style={{ textDecoration:todo.isCompleted ? 'line-through' : ''}}>
     {todo.text}
-    <div> <button onClick={() => completedTodo(index)}> completed </button></div>
-    <div> <button onClick={() => removeTodo(index)}> deleted </button></div>
-
+    <div> <Button onClick={() => completedTodo(index)}> completed </Button></div>
+    <div> <Button onClick={() => removeTodo(index)}> deleted </Button></div>
     </div>;
 }
 
@@ -68,8 +68,13 @@ const removeTodo = index =>{
   newTodos.splice(index,1);
   setTodos(newTodos);
 }
+const Container = styled.div`
+  text-align:center;
+`
+
 
 return(
+<Container>
   <div className="app">
     <div className="todo-list">
       {todos.map((todo, index) => (
@@ -85,7 +90,8 @@ return(
         <TodoForm addTodo={addTodo} />
     </div>
   </div>
+</Container>
   )
 }
 
-export default App
+export default App;
